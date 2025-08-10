@@ -1,11 +1,28 @@
   import { useState } from "react";
-  import { INIT_TODO_LIST } from "../../../constants/data.js";
+  import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "../../../constants/data.js";
 
   export const TodoTemplate = () => {
     // 状態管理: Todoリスト
     const [todoList, setTodoList] = useState(INIT_TODO_LIST);
     // 状態管理: 入力値
     const [inputValue, setInputValue] = useState("");
+    // 状態管理: ユニークID
+    const [uniqueId, setUniqueId] = useState(INIT_UNIQUE_ID);
+
+    // Todo追加処理
+    const handleAddTodo = (e) => {
+      if (e.key === "Enter" && inputValue !== "") {
+        const nextUniqueId = uniqueId + 1;
+        // 新しいTodoを追加
+        const newTodo = {
+          id: nextUniqueId,
+          title: inputValue,
+        };
+        setTodoList([...todoList, newTodo]);
+        setUniqueId(nextUniqueId);
+        setInputValue(""); // 入力値をリセット
+      }
+    };
 
     return (
       <div>
@@ -16,7 +33,8 @@
           type="text"
           value={inputValue} 
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="新しいTodoを入力"
+          onKeyDown={handleAddTodo}
+          placeholder="新しいTodoを入力してEnter"
         />
         
         {/* Todoリスト表示 */}
