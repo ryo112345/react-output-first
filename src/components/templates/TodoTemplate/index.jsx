@@ -24,6 +24,15 @@
       }
     };
 
+    // Todo削除処理
+    const handleDeleteTodo = (targetId, targetTitle) => {
+      if (window.confirm(`「${targetTitle}」のtodoを削除しますか？`)) {
+        // 削除するid以外のtodoリストを再編集
+        const newTodoList = todoList.filter((todo) => todo.id !== targetId);
+        setTodoList(newTodoList);
+      }
+    };
+
     return (
       <div>
         <h1>Todo List</h1>
@@ -39,7 +48,12 @@
         
         {/* Todoリスト表示 */}
         {todoList.map((todo) => (
-          <p key={todo.id}>{todo.title}</p>
+          <div key={todo.id} style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+            <span>{todo.title}</span>
+            <button onClick={() => handleDeleteTodo(todo.id, todo.title)}>
+              削除
+            </button>
+          </div>
         ))}
       </div>
     );
