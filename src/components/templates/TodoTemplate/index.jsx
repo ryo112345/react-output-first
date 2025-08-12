@@ -1,4 +1,5 @@
   import { useState, useMemo } from "react";
+  import { InputForm } from "../../atoms/InputForm";
   import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "../../../constants/data.js";
 
   export const TodoTemplate = () => {
@@ -54,11 +55,10 @@
         {/* Todo追加エリア */}
         <section>
           <h2>ADD TODO</h2>
-          <input
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleAddTodo}
+          <InputForm
+            inputValue={inputValue}
+            handleChangeValue={(e) => setInputValue(e.target.value)}
+            handleKeyDown={handleAddTodo}
             placeholder="新しいTodoを入力してEnter"
           />
         </section>
@@ -66,10 +66,9 @@
         {/* 検索フィールドエリア */}
         <section>
           <h2>SEARCH</h2>
-          <input
-            type="text"
-            value={searchKeyword}
-            onChange={handleChangeSearchKeyword}
+          <InputForm
+            inputValue={searchKeyword}
+            handleChangeValue={handleChangeSearchKeyword}
             placeholder="Search Keyword"
           />
         </section>
