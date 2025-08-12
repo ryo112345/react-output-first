@@ -1,6 +1,7 @@
   import { useState, useMemo } from "react";
   import { InputForm } from "../../atoms/InputForm";
   import { AddTodo } from "../../organisms/AddTodo";
+  import { TodoList } from "../../organisms/TodoList";
   import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "../../../constants/data.js";
 
   export const TodoTemplate = () => {
@@ -74,14 +75,12 @@
         
         {/* Todoリスト表示 */}
         <section>
-          {showTodoList.length > 0 && showTodoList.map((todo) => (
-            <div key={todo.id} style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
-              <span>{todo.title}</span>
-              <button onClick={() => handleDeleteTodo(todo.id, todo.title)}>
-                削除
-              </button>
-            </div>
-          ))}
+          {showTodoList.length > 0 && (
+            <TodoList
+              todoList={showTodoList}
+              handleDeleteTodo={handleDeleteTodo}
+            />
+          )}
         </section>
       </div>
     );
