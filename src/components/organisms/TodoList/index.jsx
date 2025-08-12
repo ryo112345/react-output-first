@@ -3,6 +3,8 @@
  *
  * @package components
  */
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./style.module.css";
 
 /**
@@ -20,12 +22,12 @@ export const TodoList = (props) => {
         <li key={todo.id} className={styles.todo}>
           <span className={styles.task}>{todo.title}</span>
           <div className={styles.far}>
-            <button
-              className={styles.deleteButton}
+            <FontAwesomeIcon
+              icon={faTrashAlt}
+              size="lg"
+              className={styles.deleteIcon}
               onClick={() => handleDeleteTodo(todo.id, todo.title)}
-            >
-              Jd
-            </button>
+            />
           </div>
         </li>
       ))}

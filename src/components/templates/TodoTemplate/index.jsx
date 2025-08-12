@@ -3,6 +3,7 @@
   import { AddTodo } from "../../organisms/AddTodo";
   import { TodoList } from "../../organisms/TodoList";
   import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "../../../constants/data.js";
+  import styles from "./styles.module.css";
 
   export const TodoTemplate = () => {
     // 状態管理: Todoリスト
@@ -51,37 +52,39 @@
     const handleChangeSearchKeyword = (e) => setSearchKeyword(e.target.value);
 
     return (
-      <div>
-        <h1>Todo List</h1>
+      <div className={styles.container}>
+        <h1 className={styles.title}>Todo List</h1>
         
-        {/* Todo追加エリア */}
-        <section>
-          <AddTodo
-            addInputValue={inputValue}
-            onChangeTodo={(e) => setInputValue(e.target.value)}
-            handleAddTodo={handleAddTodo}
-          />
-        </section>
-
-        {/* 検索フィールドエリア */}
-        <section>
-          <h2>SEARCH</h2>
-          <InputForm
-            inputValue={searchKeyword}
-            handleChangeValue={handleChangeSearchKeyword}
-            placeholder="Search Keyword"
-          />
-        </section>
-        
-        {/* Todoリスト表示 */}
-        <section>
-          {showTodoList.length > 0 && (
-            <TodoList
-              todoList={showTodoList}
-              handleDeleteTodo={handleDeleteTodo}
+        <div className={styles.content}>
+          {/* Todo追加エリア */}
+          <section className={styles.common}>
+            <AddTodo
+              addInputValue={inputValue}
+              onChangeTodo={(e) => setInputValue(e.target.value)}
+              handleAddTodo={handleAddTodo}
             />
-          )}
-        </section>
+          </section>
+
+          {/* 検索フィールドエリア */}
+          <section className={styles.common}>
+            <h2 className={styles.subTitle}>SEARCH</h2>
+            <InputForm
+              inputValue={searchKeyword}
+              handleChangeValue={handleChangeSearchKeyword}
+              placeholder="Search Keyword"
+            />
+          </section>
+          
+          {/* Todoリスト表示 */}
+          <section className={styles.common}>
+            {showTodoList.length > 0 && (
+              <TodoList
+                todoList={showTodoList}
+                handleDeleteTodo={handleDeleteTodo}
+              />
+            )}
+          </section>
+        </div>
       </div>
     );
   };
