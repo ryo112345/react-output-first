@@ -1,5 +1,6 @@
   import { useState, useMemo } from "react";
   import { InputForm } from "../../atoms/InputForm";
+  import { AddTodo } from "../../organisms/AddTodo";
   import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "../../../constants/data.js";
 
   export const TodoTemplate = () => {
@@ -54,12 +55,10 @@
         
         {/* Todo追加エリア */}
         <section>
-          <h2>ADD TODO</h2>
-          <InputForm
-            inputValue={inputValue}
-            handleChangeValue={(e) => setInputValue(e.target.value)}
-            handleKeyDown={handleAddTodo}
-            placeholder="新しいTodoを入力してEnter"
+          <AddTodo
+            addInputValue={inputValue}
+            onChangeTodo={(e) => setInputValue(e.target.value)}
+            handleAddTodo={handleAddTodo}
           />
         </section>
 
